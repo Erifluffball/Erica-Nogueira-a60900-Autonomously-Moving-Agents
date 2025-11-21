@@ -16,10 +16,17 @@ public class Bot : MonoBehaviour
     void Seek(Vector3 location)
     {
         agent.SetDestination(location);
+
+    }
+
+    void Flee(Vector3 location)
+    {
+        Vector3 fleeVector = location - this.transform.position;
+        agent.SetDestination(this.transform.position - fleeVector);
     }
     // Update is called once per frame
     void Update()
     {
-
+        Flee(target.transform.position);
     }
 }
