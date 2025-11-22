@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Bot : MonoBehaviour
 {
@@ -120,6 +121,17 @@ public class Bot : MonoBehaviour
 
         Seek(info.point + chosenDir.normalized * 2);
 
+    }
+
+    bool canSeeTarget()
+    {
+        RaycastHit raycastInfo;
+        Vector3 rayToTarget = target.transform.position - this.transform.position;
+        if (Physics.Raycast(this.transform.position, rayToTarget, out raycastInfo))
+        {
+            if (raycastInfo.transform.gameObject.tag == "cop")
+                return;
+        }
     }
 
     // Update is called once per frame
