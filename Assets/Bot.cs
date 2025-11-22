@@ -51,6 +51,17 @@ public class Bot : MonoBehaviour
         float lookAhead = targetDir.magnitude / (agent.speed + ds.currentSpeed);
         Flee(target.transform.position + target.transform.forward * lookAhead);
     }
+
+    Vector3 wanderTarget = Vector3.zero;
+    void Wander()
+    {
+        float wanderRadius = 10;
+        float wanderDistance = 20;
+        float wanderJitter = 1;
+
+        wanderTarget += new Vector3(Random.Range(-1.0f, 1.0f) * wanderJitter, 0, Random.Range(-1.0f, 1.0f) * wanderJitter) ;
+    }
+
     // Update is called once per frame
     void Update()
     {
