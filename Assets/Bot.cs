@@ -130,13 +130,17 @@ public class Bot : MonoBehaviour
         if (Physics.Raycast(this.transform.position, rayToTarget, out raycastInfo))
         {
             if (raycastInfo.transform.gameObject.tag == "cop")
-                return;
+                return true;
         }
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Hide();
+        if (canSeeTarget())
+        {
+            CleverHide();
+        }
     }
 }
