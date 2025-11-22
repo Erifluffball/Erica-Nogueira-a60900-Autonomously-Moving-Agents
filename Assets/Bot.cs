@@ -43,9 +43,17 @@ public class Bot : MonoBehaviour
         float lookAhead = targetDir.magnitude / (agent.speed + ds.currentSpeed);
         Seek(target.transform.position + target.transform.forward * lookAhead);
         }
+
+    void Evade()
+    {
+    Vector3 targetDir = target.transform.position - this.transform.position;
+
+        float lookAhead = targetDir.magnitude / (agent.speed + ds.currentSpeed);
+        Flee(target.transform.position + target.transform.forward * lookAhead);
+    }
     // Update is called once per frame
     void Update()
     {
-        Pursue();
+        Evade();
     }
 }
