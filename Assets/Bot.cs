@@ -127,7 +127,8 @@ public class Bot : MonoBehaviour
     {
         RaycastHit raycastInfo;
         Vector3 rayToTarget = target.transform.position - this.transform.position;
-        if (Physics.Raycast(this.transform.position, rayToTarget, out raycastInfo))
+        float lookAngle = Vector3.Angle(this.transform.forward, rayToTarget);
+        if (lookAngle < 60 && Physics.Raycast(this.transform.position, rayToTarget, out raycastInfo))
         {
             if (raycastInfo.transform.gameObject.tag == "cop")
                 return true;
@@ -138,6 +139,12 @@ public class Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Seek
+        //Flee
+        //Pursue
+        //Evade
+        //Wander
+        //Hide
         if (canSeeTarget())
         {
             CleverHide();
