@@ -120,6 +120,8 @@ public class Bot : MonoBehaviour
 
         Seek(info.point + chosenDir.normalized * 2);
 
+    }
+
     // Update is called once per frame
     void Update()
     {
