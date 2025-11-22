@@ -78,7 +78,7 @@ public class Bot : MonoBehaviour
         for (int i = 0; i < World.Instance.GetHidingSpots().Length; i++)
         { 
         Vector3 hideDir = World.Instance.GetHidingSpots()[i].transform.position - target.transform.position;
-        Vector3 hidePos = World.Instance.GetHidingSpots()[i].transform.position + hideDir.normalized * 5;
+        Vector3 hidePos = World.Instance.GetHidingSpots()[i].transform.position + hideDir.normalized * 10;
 
             if(Vector3.Distance(this.transform.position, hidePos) < dist)
             {
