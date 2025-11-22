@@ -147,6 +147,12 @@ public class Bot : MonoBehaviour
         }
         return false;
     }
+
+    bool coolDown = false;
+    void BehaviourCooldown()
+    {
+        coolDown = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -156,11 +162,18 @@ public class Bot : MonoBehaviour
         //Evade
         //Wander
         //Hide
-        if (CanSeeTarget() && CanSeeMe())
+        if (!coolDown)
         {
-            CleverHide();
+            if (CanSeeTarget() && CanSeeMe())
+            {
+                CleverHide();
+                coolDown = true;
+                Invoke("BehaviourCooldown", 5);
+            }
+            else
+            {
+                Pursue();
+            }
         }
-        else
-            Pursue();
     }
 }
