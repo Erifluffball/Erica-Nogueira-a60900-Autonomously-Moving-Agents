@@ -123,7 +123,7 @@ public class Bot : MonoBehaviour
 
     }
 
-    bool canSeeTarget()
+    bool CanSeeTarget()
     {
         RaycastHit raycastInfo;
         Vector3 rayToTarget = target.transform.position - this.transform.position;
@@ -136,6 +136,17 @@ public class Bot : MonoBehaviour
         return false;
     }
 
+    bool CanSeeMe()
+    {
+        Vector3 rayToTarget = this.transform.position - target.transform.position;
+        float lookAngle = Vector3.Angle(target.transform.forward, rayToTarget);
+
+        if (lookAngle < 60)
+        {
+            return true;
+        }
+        return false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -145,9 +156,11 @@ public class Bot : MonoBehaviour
         //Evade
         //Wander
         //Hide
-        if (canSeeTarget())
+        if (CanSeeTarget() && CanSeeMe())
         {
             CleverHide();
         }
+        else
+            Pursue();
     }
 }
